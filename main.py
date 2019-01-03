@@ -64,3 +64,5 @@ while map[ord][abs] != map[14][14]:
     print(map)
 
 print("You are a hero!")
+
+# Comment bloquer les déplacements en dehors du labyrinthe
