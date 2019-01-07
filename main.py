@@ -1,67 +1,54 @@
+from map import Map
+from macgyver import Macgyver
+from guardian import Guardian
+from object import Object
 # Help MacGyver to escape
-
-# Brut mapping
-map = [
-['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'],
-['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'],
-['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'],
-['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'],
-['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'],
-['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'],
-['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'],
-['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'],
-['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'],
-['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'],
-['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'],
-['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'],
-['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'],
-['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'],
-['X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X']
-]
-
+display_map = Map()
 # Starting position, to be random in the future
-ord = 0
+ord = 1
 abs = 0
-map[ord][abs] = 'P'
 
 # loop of entry, actually, the end of the game is is the down-right corner
-while map[ord][abs] != map[14][14]:
+while display_map.map[ord][abs] != display_map.map[13][14]:
     print("Hi, the goal is to go down-right of this map !")
     print("You can use R, for right, L for left, U for up and D for down")
     user_entry = input()
 
 # move right
     if user_entry == 'R':
-        map[ord][abs] = 'X'
+        display_map.map[ord][abs] = 'X'
         abs = abs + 1
-        map[ord][abs] = 'P'
-        position = map[ord][abs]
+        display_map.map[ord][abs] = 'P'
+        position = display_map.map[ord][abs]
 
 # move left
     elif user_entry == 'L':
-        map[ord][abs] = 'X'
+        display_map.map[ord][abs] = 'X'
         abs = abs - 1
-        map[ord][abs] = 'P'
-        position = map[ord][abs]
+        display_map.map[ord][abs] = 'P'
+        position = display_map.map[ord][abs]
 
 # move up
     elif user_entry == 'U':
-        map[ord][abs] = 'X'
+        display_map.map[ord][abs] = 'X'
         ord = ord - 1
-        map[ord][abs] = 'P'
-        position = map[ord][abs]
+        display_map.map[ord][abs] = 'P'
+        position = display_map.map[ord][abs]
 
 # move down
     elif user_entry == 'D':
-        map[ord][abs] = 'X'
+        display_map.map[ord][abs] = 'X'
         ord = ord + 1
-        map[ord][abs] = 'P'
-        position = map[ord][abs]
+        display_map.map[ord][abs] = 'P'
+        position = display_map.map[ord][abs]
 # in case of a wrong caracter
     else:
         print("Wrong caracter!")
 # return map every time
-    print(map)
+    for affichage in display_map.map:
+        for caracter in affichage:
+            print(caracter, end =" ")
+        print("")
 
 print("You are a hero!")
 
