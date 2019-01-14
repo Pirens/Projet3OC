@@ -1,14 +1,18 @@
+# Local import
 from map import Map
 
+
+'''Your hero'''
 class Macgyver:
-    # Class initialization
+
+    '''Init'''
     def __init__(self, ord, abs):
         self.ord = ord
         self.abs = abs
 
-    # Caracter move right
+    '''Move right'''
     def right(self, display_map):
-        if display_map.map[self.ord][self.abs + 1] == 'O':
+        if display_map.map[self.ord][self.abs + 1] == 'O': #If it's a wall, you can't move
             return display_map
         else:
             display_map.map[self.ord][self.abs] = 'X'
@@ -17,9 +21,9 @@ class Macgyver:
             position = display_map.map[self.ord][self.abs]
             return display_map
 
-    # Caracter move left
+    '''Move left'''
     def left(self, display_map):
-        if display_map.map[self.ord][self.abs - 1] == 'O':
+        if display_map.map[self.ord][self.abs - 1] == 'O': #If it's a wall, you can't move
             return display_map
         else:
             display_map.map[self.ord][self.abs] = 'X'
@@ -28,9 +32,9 @@ class Macgyver:
             position = display_map.map[self.ord][self.abs]
             return display_map
 
-    # Caracter move up
+    '''Move up'''
     def up(self, display_map):
-        if display_map.map[self.ord - 1][self.abs] == 'O':
+        if display_map.map[self.ord - 1][self.abs] == 'O': #If it's a wall, you can't move
             return display_map
         else:
             display_map.map[self.ord][self.abs] = 'X'
@@ -39,9 +43,9 @@ class Macgyver:
             position = display_map.map[self.ord][self.abs]
             return display_map
 
-    # Carcter move down
+    '''Move down'''
     def down(self, display_map):
-        if display_map.map[self.ord + 1][self.abs] == 'O':
+        if display_map.map[self.ord + 1][self.abs] == 'O': #If it's a wall, you can't move
             return display_map
         else:
             display_map.map[self.ord][self.abs] = 'X'

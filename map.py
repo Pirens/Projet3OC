@@ -1,3 +1,4 @@
+'''The map you play in this game'''
 class Map:
     def __init__(self):
         self.map = [

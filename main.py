@@ -22,28 +22,47 @@ for affichage in display_map.map:
     for points in affichage:
         print(points, end =" ")
     print("")
-    
+
+'''Object variable'''
+nbr_objects = 0
+
 '''Gaming session'''
-# loop of move
+# loop of move if the character isn't on the ending poition
 while display_map.map[character.ord][character.abs] != display_map.map[13][13]:
-    print("Hi, the goal is to go down-right of this map !")
+    print("Can you help MacGyver to asleep the guardian ?")
     print("You can use D for right, Q for left, Z for up and S for down")
     user_entry = input()
 
-    # move right
+    # move right + checking if an object is a the position before
     if user_entry == 'D':
+        if (display_map.map[character.ord][character.abs + 1] == 'N')\
+        or (display_map.map[character.ord][character.abs + 1] == 'T')\
+        or (display_map.map[character.ord][character.abs + 1] == 'E'):
+            nbr_objects = nbr_objects + 1
         display_map = character.right(display_map)
 
-    # move left
+    # move left + checking if an object is a the position before
     elif user_entry == 'Q':
+        if (display_map.map[character.ord][character.abs - 1] == 'N')\
+        or (display_map.map[character.ord][character.abs - 1] == 'T')\
+        or (display_map.map[character.ord][character.abs - 1] == 'E'):
+            nbr_objects = nbr_objects + 1
         display_map = character.left(display_map)
 
-    # move up
+    # move up + checking if an object is a the position before
     elif user_entry == 'Z':
+        if (display_map.map[character.ord - 1][character.abs] == 'N')\
+        or (display_map.map[character.ord - 1][character.abs] == 'T')\
+        or (display_map.map[character.ord - 1][character.abs] == 'E'):
+            nbr_objects = nbr_objects + 1
         display_map = character.up(display_map)
 
-    # move down
+    # move down + checking if an object is a the position before
     elif user_entry == 'S':
+        if (display_map.map[character.ord + 1][character.abs] == 'N')\
+        or (display_map.map[character.ord + 1][character.abs] == 'T')\
+        or (display_map.map[character.ord + 1][character.abs] == 'E'):
+            nbr_objects = nbr_objects + 1
         display_map = character.down(display_map)
 
     # in case of a wrong caracter
@@ -58,6 +77,9 @@ while display_map.map[character.ord][character.abs] != display_map.map[13][13]:
 
 '''End of the game'''
 # end of the game
-print("You are a hero!")
+if nbr_objects == 3:
+    print("You win this game")
+else:
+    print("You die idiot")
 
 # Comment bloquer les déplacements en dehors du labyrinthe
