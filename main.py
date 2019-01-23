@@ -9,15 +9,21 @@ display_map = Map()
 # Instance of Macgyver and beginning position
 character = Macgyver(1,1)
 # Instance of object
-dispatch_objects = Object(1,1)
+needle = Object(1,1)
+tube = Object(1,1)
+ether = Object(1,1)
 
 '''Objects integration on the map'''
 # Objects integration on the map
-display_map = dispatch_objects.needle(display_map)
-display_map = dispatch_objects.tube(display_map)
-display_map = dispatch_objects.ether(display_map)
 
-'''Have a look to the beginning map'''
+display_map = needle.object_dispatch(display_map)
+display_map.map[needle.ordo][needle.abso] = 'N'
+display_map = tube.object_dispatch(display_map)
+display_map.map[tube.ordo][tube.abso] = 'T'
+display_map = ether.object_dispatch(display_map)
+display_map.map[ether.ordo][ether.abso] = 'E'
+
+'''Have a look at the beginning map'''
 for affichage in display_map.map:
     for points in affichage:
         print(points, end =" ")
