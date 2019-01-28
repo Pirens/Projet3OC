@@ -1,4 +1,3 @@
-
 ''' Local import '''
 from display import Display
 from macgyver import Macgyver
@@ -13,15 +12,12 @@ class Main:
 
         self.display = Display()
         self.character = Macgyver(1,1)
-        self.needle = Object(1,1)
+        self.needle = Object(1,1,'N')
         self.display.mapf = self.needle.object_dispatch(self.display.mapf)
-        self.display.mapf[self.needle.ordo][self.needle.abso] = 'N'
-        self.tube = Object(1,1)
+        self.tube = Object(1,1,'T')
         self.display.mapf = self.tube.object_dispatch(self.display.mapf)
-        self.display.mapf[self.tube.ordo][self.tube.abso] = 'T'
-        self.ether = Object(1,1)
+        self.ether = Object(1,1,'E')
         self.display.mapf = self.ether.object_dispatch(self.display.mapf)
-        self.display.mapf[self.ether.ordo][self.ether.abso] = 'E'
 
 
     def play(self):
