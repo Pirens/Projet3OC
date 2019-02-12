@@ -1,7 +1,9 @@
-# Function import
+'''
+This class is here to randomize the object dispatch.
+'''
 import random
 
-'''Class for the 3 objects you need to get high the guardian'''
+
 class Object:
 
     def __init__(self, ord, abs, char):

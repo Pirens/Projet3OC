@@ -1,61 +1,78 @@
+'''
+This is the main part of the game. You launch it to launch the game.
+The first action of the class is to initialize the map with the character location,
+next, you will find the function "play", which is users interaction core.
+After this, you have 4 differents functions. They are used to be the verification of an object
+in a given position before moving the character.
+
+I hope you will enjoy this first python project in Openclassroom --> Pirens
+'''
+
+
 import pygame
 from pygame.locals import *
-''' Local import '''
-from display import Display
-from macgyver import Macgyver
-from object import Object
+
+from display import Display #display is used to display the map
+from macgyver import Macgyver #macgyver is used to move the character
 
 
 class Main:
 
-
-    def __init__(self):
-        '''Opening instances we need to play, and dispatch objects'''
-
+    def __init__(self): #initialize the map and Macgyver location
         self.display = Display()
         self.character = Macgyver(1,1)
 
-    def play(self):
-
+    def play(self, nbr_objects): #play with Macgyver
         self.display.display_map()
-        nbr_objects = 0
-        while self.display.mapf[self.character.ord][self.character.abs] != self.display.mapf[13][13]:
+        self.nbr_objects = nbr_objects
+        while self.display.map[self.character.ord][self.character.abs] != self.display.map[13][13]:
             for event in pygame.event.get():
-                if event.type == QUIT:
-                    self.display.mapf[self.character.ord][self.character.abs] = self.display.mapf[13][13]
-                if event.type == KEYDOWN:
+                if event.type == QUIT: #in the case you want to quit this game
+                    self.nbr_objects = 0 #you will not win like this !
+                    self.display.map[self.character.ord][self.character.abs] = self.display.map[13][13]
+                if event.type == KEYDOWN: #moving time
                     if event.key == K_RIGHT:
-                        if (self.display.mapf[self.character.ord][self.character.abs + 1] == 'N')\
-                        or (self.display.mapf[self.character.ord][self.character.abs + 1] == 'T')\
-                        or (self.display.mapf[self.character.ord][self.character.abs + 1] == 'E'):
-                            nbr_objects = nbr_objects + 1
-                        self.display.mapf = self.character.right(self.display.mapf)
+                        main.move_right()
                     if event.key == K_LEFT:
-                        if (self.display.mapf[self.character.ord][self.character.abs - 1] == 'N')\
-                        or (self.display.mapf[self.character.ord][self.character.abs - 1] == 'T')\
-                        or (self.display.mapf[self.character.ord][self.character.abs - 1] == 'E'):
-                            nbr_objects = nbr_objects + 1
-                        self.display.mapf = self.character.left(self.display.mapf)
+                        main.move_left()
                     if event.key == K_UP:
-                        if (self.display.mapf[self.character.ord - 1][self.character.abs] == 'N')\
-                        or (self.display.mapf[self.character.ord - 1][self.character.abs] == 'T')\
-                        or (self.display.mapf[self.character.ord - 1][self.character.abs] == 'E'):
-                            nbr_objects = nbr_objects + 1
-                        self.display.mapf = self.character.up(self.display.mapf)
+                        main.move_up()
                     if event.key == K_DOWN:
-                        if (self.display.mapf[self.character.ord + 1][self.character.abs] == 'N')\
-                        or (self.display.mapf[self.character.ord + 1][self.character.abs] == 'T')\
-                        or (self.display.mapf[self.character.ord + 1][self.character.abs] == 'E'):
-                            nbr_objects = nbr_objects + 1
-                        self.display.mapf = self.character.down(self.display.mapf)
+                        main.move_down()
                     self.display.display_map()
-
-        '''End of the game'''
-        # end of the game
-        if nbr_objects == 3:
+        if self.nbr_objects == 3: #if you take all the necessary objects
             print("You win this game")
-        else:
+        else: #if not
             print("You die idiot")
 
+    def move_right(self): #object verification before moving
+        if (self.display.map[self.character.ord][self.character.abs + 1] == 'N')\
+        or (self.display.map[self.character.ord][self.character.abs + 1] == 'T')\
+        or (self.display.map[self.character.ord][self.character.abs + 1] == 'E'):
+            self.nbr_objects = self.nbr_objects + 1
+        self.display.map = self.character.right(self.display.map)
+
+    def move_left(self):  #object verification before moving
+        if (self.display.map[self.character.ord][self.character.abs - 1] == 'N')\
+        or (self.display.map[self.character.ord][self.character.abs - 1] == 'T')\
+        or (self.display.map[self.character.ord][self.character.abs - 1] == 'E'):
+            self.nbr_objects = self.nbr_objects + 1
+        self.display.map = self.character.left(self.display.map)
+
+    def move_up(self):  #object verification before moving
+        if (self.display.map[self.character.ord - 1][self.character.abs] == 'N')\
+        or (self.display.map[self.character.ord - 1][self.character.abs] == 'T')\
+        or (self.display.map[self.character.ord - 1][self.character.abs] == 'E'):
+            self.nbr_objects = self.nbr_objects + 1
+        self.display.map = self.character.up(self.display.map)
+
+    def move_down(self):  #object verification before moving
+        if (self.display.map[self.character.ord + 1][self.character.abs] == 'N')\
+        or (self.display.map[self.character.ord + 1][self.character.abs] == 'T')\
+        or (self.display.map[self.character.ord + 1][self.character.abs] == 'E'):
+            self.nbr_objects = self.nbr_objects + 1
+        self.display.map = self.character.down(self.display.map)
+
+
 main = Main()
-main.play()
+main.play(0)

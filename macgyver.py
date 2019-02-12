@@ -1,15 +1,18 @@
-'''Your hero, this is the basics moves'''
+'''
+This is the basic moves of MacGyver.
+In the init function, we declared 2 variables for the location of the character.
+The  next functions are the basic moves on the possibles path.
+'''
+
 
 class Macgyver:
 
-    '''Init'''
     def __init__(self, ord, abs):
         self.ord = ord
         self.abs = abs
 
-    '''Move right'''
-    def right(self, display_map):
-        if display_map[self.ord][self.abs + 1] == 'O': #If it's a wall, you can't move
+    def right(self, display_map): #move right
+        if display_map[self.ord][self.abs + 1] == 'O':
             return display_map
         else:
             display_map[self.ord][self.abs] = 'X'
@@ -18,9 +21,8 @@ class Macgyver:
             position = display_map[self.ord][self.abs]
             return display_map
 
-    '''Move left'''
-    def left(self, display_map):
-        if display_map[self.ord][self.abs - 1] == 'O': #If it's a wall, you can't move
+    def left(self, display_map): #move left
+        if display_map[self.ord][self.abs - 1] == 'O':
             return display_map
         else:
             display_map[self.ord][self.abs] = 'X'
@@ -29,9 +31,8 @@ class Macgyver:
             position = display_map[self.ord][self.abs]
             return display_map
 
-    '''Move up'''
-    def up(self, display_map):
-        if display_map[self.ord - 1][self.abs] == 'O': #If it's a wall, you can't move
+    def up(self, display_map): #move up
+        if display_map[self.ord - 1][self.abs] == 'O':
             return display_map
         else:
             display_map[self.ord][self.abs] = 'X'
@@ -40,9 +41,8 @@ class Macgyver:
             position = display_map[self.ord][self.abs]
             return display_map
 
-    '''Move down'''
-    def down(self, display_map):
-        if display_map[self.ord + 1][self.abs] == 'O': #If it's a wall, you can't move
+    def down(self, display_map): #move down
+        if display_map[self.ord + 1][self.abs] == 'O':
             return display_map
         else:
             display_map[self.ord][self.abs] = 'X'
