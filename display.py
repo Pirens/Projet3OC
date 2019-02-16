@@ -26,34 +26,37 @@ class Display:
             self.map = self.ether.object_dispatch(self.map)
 
     def display_map(self): #display map
-        window = pygame.display.set_mode((600,600))
+        self.window = pygame.display.set_mode((600,600))
         line_index, ord = 0, 0
         for line in self.map:
             char_index, abs = 0, 0
             for char in line:
                 if self.map[char_index][line_index] == 'O':
                     sprite_w = pygame.image.load("ressources/wall.png").convert()
-                    window.blit(sprite_w, (ord,abs))
+                    self.window.blit(sprite_w, (ord,abs))
                 else:
                     sprite_t = pygame.image.load("ressources/tile.png").convert()
-                    window.blit(sprite_t, (ord,abs))
-                    if self.map[char_index][line_index] == 'G':
-                        picture = pygame.image.load("ressources/gardien.png").convert_alpha()
-                        window.blit(picture, (ord,abs))
-                    elif self.map[char_index][line_index] == 'N':
-                        picture = pygame.image.load("ressources/aiguille.png").convert_alpha()
-                        window.blit(picture, (ord,abs))
-                    elif self.map[char_index][line_index] == 'T':
-                        picture = pygame.image.load("ressources/tube_plastique.png").convert()
-                        picture.set_colorkey((255,255,255))
-                        window.blit(picture, (ord,abs))
-                    elif self.map[char_index][line_index] == 'E':
-                        picture = pygame.image.load("ressources/ether.png").convert()
-                        picture.set_colorkey((1,1,1))
-                        window.blit(picture, (ord,abs))
-                    elif self.map[char_index][line_index] == 'P':
-                        character = pygame.image.load("ressources/macgyver.png").convert_alpha()
-                        window.blit(character, (ord,abs))
+                    self.window.blit(sprite_t, (ord,abs))
+                    self.display_objects(char_index, line_index, ord, abs)
                 char_index, abs =char_index + 1,  abs + 40
             line_index, ord = line_index + 1, ord + 40
         pygame.display.flip()
+
+    def display_objects(self, char_index, line_index, ord, abs):
+        if self.map[char_index][line_index] == 'G':
+            picture = pygame.image.load("ressources/gardien.png").convert_alpha()
+            self.window.blit(picture, (ord,abs))
+        elif self.map[char_index][line_index] == 'N':
+            picture = pygame.image.load("ressources/aiguille.png").convert_alpha()
+            self.window.blit(picture, (ord,abs))
+        elif self.map[char_index][line_index] == 'T':
+            picture = pygame.image.load("ressources/tube_plastique.png").convert()
+            picture.set_colorkey((255,255,255))
+            self.window.blit(picture, (ord,abs))
+        elif self.map[char_index][line_index] == 'E':
+            picture = pygame.image.load("ressources/ether.png").convert()
+            picture.set_colorkey((1,1,1))
+            self.window.blit(picture, (ord,abs))
+        elif self.map[char_index][line_index] == 'P':
+            character = pygame.image.load("ressources/macgyver.png").convert_alpha()
+            self.window.blit(character, (ord,abs))
