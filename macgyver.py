@@ -1,21 +1,16 @@
-'''
-This is the basic moves of MacGyver.
-In the init function, we declared 2 variables for the location of the character.
-The  next functions are the basic moves on the possibles path.
-'''
-
-
 class Macgyver:
 
+    ''' Init the coordinates and the objects variable '''
     def __init__(self, ord, abs, nbr_objects):
         self.ord = ord
         self.abs = abs
         self.nbr_objects = nbr_objects
 
-    def right(self, display_map): #move right
+    ''' Move right '''
+    def right(self, display_map):
         if (display_map[self.ord][self.abs + 1] == 'N')\
-        or (display_map[self.ord][self.abs + 1] == 'T')\
-        or (display_map[self.ord][self.abs + 1] == 'E'):
+                or (display_map[self.ord][self.abs + 1] == 'T')\
+                or (display_map[self.ord][self.abs + 1] == 'E'):
             self.nbr_objects = self.nbr_objects + 1
         if display_map[self.ord][self.abs + 1] == 'O':
             return display_map
@@ -26,10 +21,11 @@ class Macgyver:
             position = display_map[self.ord][self.abs]
             return display_map
 
-    def left(self, display_map): #move left
+    ''' Move left '''
+    def left(self, display_map):
         if (display_map[self.ord][self.abs - 1] == 'N')\
-        or (display_map[self.ord][self.abs - 1] == 'T')\
-        or (display_map[self.ord][self.abs - 1] == 'E'):
+                or (display_map[self.ord][self.abs - 1] == 'T')\
+                or (display_map[self.ord][self.abs - 1] == 'E'):
             self.nbr_objects = self.nbr_objects + 1
         if display_map[self.ord][self.abs - 1] == 'O':
             return display_map
@@ -40,10 +36,11 @@ class Macgyver:
             position = display_map[self.ord][self.abs]
             return display_map
 
-    def up(self, display_map): #move up
+    ''' Move up '''
+    def up(self, display_map):
         if (display_map[self.ord - 1][self.abs] == 'N')\
-        or (display_map[self.ord - 1][self.abs] == 'T')\
-        or (display_map[self.ord - 1][self.abs] == 'E'):
+                or (display_map[self.ord - 1][self.abs] == 'T')\
+                or (display_map[self.ord - 1][self.abs] == 'E'):
             self.nbr_objects = self.nbr_objects + 1
         if display_map[self.ord - 1][self.abs] == 'O':
             return display_map
@@ -54,10 +51,11 @@ class Macgyver:
             position = display_map[self.ord][self.abs]
             return display_map
 
-    def down(self, display_map): #move down
+    ''' Move down '''
+    def down(self, display_map):
         if (display_map[self.ord + 1][self.abs] == 'N')\
-        or (display_map[self.ord + 1][self.abs] == 'T')\
-        or (display_map[self.ord + 1][self.abs] == 'E'):
+                or (display_map[self.ord + 1][self.abs] == 'T')\
+                or (display_map[self.ord + 1][self.abs] == 'E'):
             self.nbr_objects = self.nbr_objects + 1
         if display_map[self.ord + 1][self.abs] == 'O':
             return display_map
